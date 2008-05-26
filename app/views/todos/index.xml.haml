@@ -1,0 +1,7 @@
+!!! XML
+%todos
+  - for todo in @todos
+    %todo{:lol => 'lol'}
+      %text= todo.text
+      %priority= todo.priority
+      %created_at= todo.created_at

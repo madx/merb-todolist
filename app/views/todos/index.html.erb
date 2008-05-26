@@ -1,0 +1,67 @@
+<p id="helpToggle"><a href="#help" title="Aide (Alt-i)" accesskey="i">?</a></p>
+
+<h1> Tâches </h1>
+
+<% if @todos.empty? %>
+  <h2 class="emptyList"> Liste vide ! </h2>
+  <p class="emptyList">
+    Entrez une nouvelle tache ou consultez l'aide (en haut à droite)
+  </p>
+<% else %>
+
+<table id="todolist">
+  <% for t in @todos %>
+  <tr>
+    <td class="todo prio"> <%= t.priority_text %> </td>
+    <td class="todo text"> <%= t.text %> </td>
+    <td class="todo date"> 
+      <span class="todo id">#<%= t.id %></span>
+      <%= t.created_at.strftime('%d/%m/%y %H:%M') %> 
+    </td>
+    <td class="todo remv"> 
+      <a href="<%= url(:delete_todo, t) %>" title="Marquer comme terminé">
+        <img src="/images/remove.png" alt="terminé" /></a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% end %>
+
+<form action="<%= url(:todos) %>" method="POST" id="form">
+  <p>
+    <input type="text" name="todo_expr" id="todo_expr" accesskey="t" />
+  </p>
+</form>
+<% if params[:error] %><p id="error"><%= params[:error] %></p><% end %>
+
+<div id="help">
+  <h2> Aide </h2>
+  
+  <h3> Ajouter une tâche </h3>
+  
+  <p>
+    Tapez du texte (en vérifiant que cela n'entre pas en conflit avec une des 
+    commandes ci&ndash;dessous) et validez en appuyant sur entrée.
+  </p>
+  
+  <p>
+    Préfixez par <kbd>++</kbd>, <kbd>+</kbd>, <kbd>-</kbd>, <kbd>--</kbd> pour
+    spécifier une priorité, si vous ne l'entrez pas la tâche aura une priorité
+    normale.
+  </p>
+  
+  <h3> Commandes </h3>
+  
+  <ul>
+    <li> <kbd>~i</kbd>&nbsp;: supprime la tâche <kbd>i</kbd> </li>
+    <li> <kbd>@i+</kbd>&nbsp;: augmente la priorité de la tâche <kbd>i</kbd> </li>
+    <li> <kbd>@i-</kbd>&nbsp;: diminue la priorité de la tâche <kbd>i</kbd> </li>
+    <li> <kbd>[i] texte</kbd>&nbsp;: change le texte de la tâche <kbd>i</kbd> </li>
+  </ul>
+  
+  <p id="about">
+    © madx 2008 — Propulsé par <a href="http://merbivore.com/" title="Site de Merb">Merb</a>
+    &amp; <a href="http://jquery.com/" title="Site de jQuery">jQuery</a>
+  </p>
+  
+</div>

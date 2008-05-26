@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <head>
+    <title>Todolist</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" language="javascript" charset="utf-8">
+    // <![CDATA[
+      $(function(){
+        $('#todo_expr').focus();
+        $('#help').hide();
+        $('#helpToggle').click(function(){
+          if($(this).hasClass('clicked')) {
+            $('#help').slideUp('normal');
+          } else {
+            $('#help').slideDown('normal');
+          }
+          $(this).toggleClass('clicked');
+        });
+      });
+    // ]]>
+    </script>
+    <style type="text/css" media="screen">
+    /* <![CDATA[ */
+      body {
+        background: #eee;
+        color: #444;
+        margin: 0;
+      }
+      
+      img {
+        border: none;
+      }
+      
+      a:link, a:visited {
+        color: #c00;
+        text-decoration: none;
+        padding: 1px;
+      }
+      a:hover { 
+        color: #d03; 
+        text-decoration: underline;
+      }
+      
+      #container {
+        width: 35%;
+        margin: 5% auto 1%;
+        padding: 1%;
+        background: #fff;
+        border: 1px solid #ccc
+      }
+      
+      h1 {
+        margin: 0 1% 1%;
+        border-bottom: 2px solid #a88;
+        color: black;
+      }
+      
+      .emptyList {
+        text-align: center;
+      }
+      
+      table {
+        width: 90%;
+        margin: 2% auto 2%;
+        border-collapse: collapse;
+      }
+      
+      td {
+        border-bottom: 1px solid #ddd;
+        padding: 1px 2px;
+        vertical-align: middle;
+      }
+      
+      .date, .prio, .remv {
+        font-size: 80%;
+      }
+      
+      .text { width: 60% }
+      .date { 
+        width: 30%; 
+        text-align: right;
+      }
+      .prio { 
+        width: 5%; 
+        font-size: 100%;
+        font-weight: bold;  
+      }
+      .remv { width: 5%  }
+      .id { color: #888; }
+      .id:after { content: ' |'}
+      .shortcut {
+        font-size: 75%;
+        color: #aaa;
+      }
+      
+      .lowprio { color: green; }
+      .highprio { color: red; }
+            
+      #form input[type=text] {
+        display: block;
+        width: 100%;
+        font-weight: bold;
+        background: #fff;
+        color: #333;
+        border: none;
+      }
+      
+      #form p {
+        width: 80%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 2px 4px;
+        border: 2px solid #a88;
+      }
+      
+      #helpToggle {
+        margin: 0;
+        float: right;
+        padding: 2px 6px;
+        border: 1px solid #aaa;
+        font-weight: bold;
+        color: red;
+        background: #eee;
+        cursor: pointer;
+      }
+      
+      #helpToggle:active { border-style: dotted; }
+      
+      #help {
+        margin-top: 1%;
+        padding: 1% 4%;
+        font-size: 80%;
+        border-top: 2px solid #a88;
+      }
+      
+      #help h2 {
+        margin: 0;
+        font-style: italic;
+        color: black;
+      }
+      
+      #help h3 {
+        margin: 0.5% 1%;
+      }
+      
+      #help p, #help ul {
+        margin: 1% 2%;
+      }
+      #help ul {
+        padding-left: 4%;
+        list-style-type: square;
+      }
+      #help kbd { 
+        color: #666; 
+        outline: 1px dotted #888;
+        background-color: #eee;
+        padding: 0px 2px;
+      }
+      
+      #help p#about {
+        text-align: center;
+        color: #666;
+      }
+      
+    /* ]]> */
+    </style>
+    
+  </head>
+  <body>
+    <div id="container">
+      <%= catch_content :for_layout %>
+    </div>
+  </body>
+</html>
