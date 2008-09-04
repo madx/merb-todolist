@@ -19,7 +19,7 @@ class TodoParser
   end
   
   def parse
-    @params = {}
+    @params = {:created_at => Time.now}
     @action = nil
     case @expr
       when /^~(\d+)$/

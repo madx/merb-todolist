@@ -1,14 +1,17 @@
-class Todo < DataMapper::Base
+require 'dm-validations'
+class Todo
+  include DataMapper::Resource
 
-  property :text,       :string
-  property :created_at, :datetime
-  property :priority,   :integer
+  property :id,         Integer,  :serial => true
+  property :text,       String
+  property :created_at, DateTime
+  property :priority,   Integer
   
-  validates_presence_of     :text, :priority
-  validates_numericality_of :priority, :only_integer => true
-  validates_true_for        :priority, :logic => lambda {
-    priority.is_a?(Integer) && (0..4).include?(priority)
-  }
+  validates_present     :text, :priority
+  validates_is_number   :priority, :only_integer => true
+  validates_with_block do
+    @priority.is_a?(Integer) && (0..4).include?(@priority)
+  end
   
   def priority_text
     {

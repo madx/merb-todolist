@@ -3,8 +3,9 @@
   <head>
     <title>Todolist</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="/javascripts/jquery.js"></script>
-    <script type="text/javascript" language="javascript" charset="utf-8">
+    <script src="/javascripts/jquery.js" type="application/x-javascript"></script>
+    
+    <script type="application/x-javascript">
     // <![CDATA[
       $(function(){
         $('#todo_expr').focus();
@@ -20,6 +21,7 @@
       });
     // ]]>
     </script>
+    
     <style type="text/css" media="screen">
     /* <![CDATA[ */
       body {
@@ -43,8 +45,8 @@
       }
       
       #container {
-        width: 35%;
-        margin: 5% auto 1%;
+        width: 94%;
+        margin: 2% auto 2%;
         padding: 1%;
         background: #fff;
         border: 1px solid #ccc
@@ -78,15 +80,16 @@
       
       .text { width: 60% }
       .date { 
-        width: 30%; 
+        width: 35%; 
         text-align: right;
       }
       .prio { 
         width: 5%; 
         font-size: 100%;
         font-weight: bold;  
+        text-align: center
       }
-      .remv { width: 5%  }
+      .remv { width: 5%; vertical-align: middle;  }
       .id { color: #888; }
       .id:after { content: ' |'}
       .shortcut {

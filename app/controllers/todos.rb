@@ -3,7 +3,7 @@ class Todos < Application
   provides :html, :xml
 
   def index
-    @todos = Todo.all :order => 'priority DESC, created_at ASC'
+    @todos = Todo.all :order => [:priority.desc, :created_at.asc]
     render
   end
 
@@ -19,10 +19,10 @@ class Todos < Application
         redirect url(:todos)
         
       when :delete
-        redirect url(:delete_todo, Todo.first(t[:params][:id]))
+        redirect url(:delete_todo, Todo.get(t[:params][:id]))
         
       when :edit
-        @todo = Todo.first t[:params][:id]
+        @todo = Todo.get t[:params][:id]
         if @todo
           @todo.text = t[:params][:text]
           @todo.save
@@ -30,7 +30,7 @@ class Todos < Application
         redirect url(:todos)
         
       when :increase_priority
-        @todo = Todo.first t[:params][:id]
+        @todo = Todo.get t[:params][:id]
         if @todo && @todo.priority < 4
           @todo.priority += 1
           @todo.save
@@ -38,7 +38,7 @@ class Todos < Application
         redirect url(:todos)
         
       when :decrease_priority
-        @todo = Todo.first t[:params][:id]
+        @todo = Todo.get t[:params][:id]
         if @todo && @todo.priority > 0
           @todo.priority -= 1
           @todo.save
@@ -49,9 +49,9 @@ class Todos < Application
   end
 
   def delete
-    @todo = Todo.first(params[:id])
+    @todo = Todo.get params[:id]
     raise NotFound unless @todo
-    if @todo.destroy!
+    if @todo.destroy
       redirect url(:todos)
     else
       raise BadRequest
